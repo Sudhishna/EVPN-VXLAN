@@ -4,4 +4,3 @@ delete routing-options
 delete forwarding-options
 delete protocols
 delete switch-options
-delete system login
