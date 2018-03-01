@@ -18,5 +18,4 @@
         host: "{{ pod_num }}-{{ inventory_hostname }}"
         replace: no
         overwrite: no
-        confirm: 5
         file: "remove-config/{{ inventory_hostname }}-remove-config.set"
