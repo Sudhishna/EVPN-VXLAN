@@ -1,0 +1,26 @@
+# Copyright 2018, Juniper Networks Pvt Ltd.
+# All rights reserved.
+# Configure the scale options 
+# command example: ansible-playbook -i all.inv config-scaleoptions.yml
+# Successfully ran on ansible version: ansible 2.4.3.0
+---
+- name: configure the scale options
+  vars:
+    pod_num: "{{ pod }}"
+  hosts: junos-leaf
+  connection: local
+  gather_facts: no
+  roles:
+    - Juniper.junos
+  tasks:
+    - name: configure the scale options
+      junos_install_config:
+        host: "{{ pod_num }}-{{ inventory_hostname }}"
+        replace: no
+        overwrite: no
+        confirm: 5
+        file: "scaleoptions/{{ inventory_hostname }}-scaleoptions-config.set"
+    - name: Confirm the commit
+      junos_commit:
+        host: "{{ pod_num }}-{{ inventory_hostname }}"
+        comment: "commit confirmed"

@@ -1,0 +1,16 @@
+[local]
+localhost ansible_connection=local
+
+[junos-ssh]
+qfx5100-1
+qfx5100-2
+qfx5110-1
+qfx5110-2
+
+[junos-spine]
+qfx5100-1
+qfx5100-2
+
+[junos-leaf]
+qfx5110-1
+qfx5110-2

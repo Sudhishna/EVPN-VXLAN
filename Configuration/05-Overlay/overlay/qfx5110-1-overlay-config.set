@@ -1,0 +1,76 @@
+set interfaces lo0 unit 0 family inet address 1.1.1.150/32
+set interfaces lo0 unit 1 family inet address 2.2.2.150/32
+set interfaces lo0 unit 2 family inet address 3.3.3.150/32
+set interfaces lo0 unit 3 family inet address 4.4.4.150/32
+set interfaces lo0 unit 4 family inet address 5.5.5.150/32
+set protocols evpn encapsulation vxlan
+set protocols evpn default-gateway no-gateway-community
+set protocols evpn extended-vni-list all
+set policy-options policy-statement export-inet1 term 1 from interface irb.51
+set policy-options policy-statement export-inet1 term 1 then community add com200
+set policy-options policy-statement export-inet1 term 1 then community add com300
+set policy-options policy-statement export-inet1 term 1 then community add com400
+set policy-options policy-statement export-inet1 term 1 then accept
+set policy-options policy-statement export-inet2 term 1 from interface irb.52
+set policy-options policy-statement export-inet2 term 1 then community add com100
+set policy-options policy-statement export-inet2 term 1 then community add com300
+set policy-options policy-statement export-inet2 term 1 then community add com400
+set policy-options policy-statement export-inet2 term 1 then accept
+set policy-options policy-statement export-inet3 term 1 from interface irb.53
+set policy-options policy-statement export-inet3 term 1 then community add com100
+set policy-options policy-statement export-inet3 term 1 then community add com200
+set policy-options policy-statement export-inet3 term 1 then community add com400
+set policy-options policy-statement export-inet3 term 1 then accept
+set policy-options policy-statement export-inet4 term 1 from interface irb.54
+set policy-options policy-statement export-inet4 term 1 then community add com100
+set policy-options policy-statement export-inet4 term 1 then community add com200
+set policy-options policy-statement export-inet4 term 1 then community add com300
+set policy-options policy-statement export-inet4 term 1 then accept
+set policy-options policy-statement import-inet term 1 from community com100
+set policy-options policy-statement import-inet term 1 from community com200
+set policy-options policy-statement import-inet term 1 from community com300
+set policy-options policy-statement import-inet term 1 from community com400
+set policy-options policy-statement import-inet term 1 then accept
+set policy-options community com100 members target:1:100
+set policy-options community com200 members target:1:200
+set policy-options community com300 members target:1:300
+set policy-options community com400 members target:1:400
+set routing-instances vrf_vlan51 instance-type vrf
+set routing-instances vrf_vlan51 interface irb.51
+set routing-instances vrf_vlan51 interface lo0.1
+set routing-instances vrf_vlan51 route-distinguisher 1.1.1.150:2
+set routing-instances vrf_vlan51 vrf-import import-inet
+set routing-instances vrf_vlan51 vrf-export export-inet1
+set routing-instances vrf_vlan51 routing-options auto-export family inet unicast
+set routing-instances vrf_vlan52 instance-type vrf
+set routing-instances vrf_vlan52 interface irb.52
+set routing-instances vrf_vlan52 interface lo0.2
+set routing-instances vrf_vlan52 route-distinguisher 1.1.1.150:3
+set routing-instances vrf_vlan52 vrf-import import-inet
+set routing-instances vrf_vlan52 vrf-export export-inet2
+set routing-instances vrf_vlan52 routing-options auto-export family inet unicast
+set routing-instances vrf_vlan53 instance-type vrf
+set routing-instances vrf_vlan53 interface irb.53
+set routing-instances vrf_vlan53 interface lo0.3
+set routing-instances vrf_vlan53 route-distinguisher 1.1.1.150:4
+set routing-instances vrf_vlan53 vrf-import import-inet
+set routing-instances vrf_vlan53 vrf-export export-inet3
+set routing-instances vrf_vlan53 routing-options auto-export family inet unicast
+set routing-instances vrf_vlan54 instance-type vrf
+set routing-instances vrf_vlan54 interface irb.54
+set routing-instances vrf_vlan54 interface lo0.4
+set routing-instances vrf_vlan54 route-distinguisher 1.1.1.150:5
+set routing-instances vrf_vlan54 vrf-import import-inet
+set routing-instances vrf_vlan54 vrf-export export-inet4
+set routing-instances vrf_vlan54 routing-options auto-export family inet unicast
+set switch-options vtep-source-interface lo0.0
+set switch-options route-distinguisher 1.1.1.150:1
+set switch-options vrf-target target:1111:11
+set vlans v51 l3-interface irb.51
+set vlans v51 vxlan vni 51
+set vlans v52 l3-interface irb.52
+set vlans v52 vxlan vni 52
+set vlans v53 l3-interface irb.53
+set vlans v53 vxlan vni 53
+set vlans v54 l3-interface irb.54
+set vlans v54 vxlan vni 54

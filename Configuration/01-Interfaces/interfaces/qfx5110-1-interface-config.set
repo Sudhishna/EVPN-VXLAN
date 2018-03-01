@@ -1,0 +1,22 @@
+set chassis aggregated-devices ethernet device-count 10
+set interfaces xe-0/0/0 mtu 9216
+set interfaces xe-0/0/0 unit 0 family inet address 10.254.254.1/31
+set interfaces xe-0/0/1 mtu 9216
+set interfaces xe-0/0/1 unit 0 family inet address 10.254.254.5/31
+set interfaces xe-0/0/2 ether-options 802.3ad ae5
+set interfaces ae5 esi 00:00:00:00:11:11:11:12:12:12
+set interfaces ae5 esi all-active
+set interfaces ae5 aggregated-ether-options lacp active
+set interfaces ae5 unit 0 family ethernet-switching interface-mode trunk
+set interfaces ae5 unit 0 family ethernet-switching vlan members v51
+set interfaces ae5 unit 0 family ethernet-switching vlan members v52
+set interfaces ae5 unit 0 family ethernet-switching vlan members v53
+set interfaces ae5 unit 0 family ethernet-switching vlan members v54
+set interfaces irb unit 51 family inet address 192.168.51.252/24 virtual-gateway-address 192.168.51.1
+set interfaces irb unit 52 family inet address 192.168.52.252/24 virtual-gateway-address 192.168.52.1
+set interfaces irb unit 53 family inet address 192.168.53.252/24 virtual-gateway-address 192.168.53.1
+set interfaces irb unit 54 family inet address 192.168.54.252/24 virtual-gateway-address 192.168.54.1
+set vlans v51 vlan-id 51
+set vlans v52 vlan-id 52
+set vlans v53 vlan-id 53
+set vlans v54 vlan-id 54

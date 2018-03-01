@@ -1,0 +1,7 @@
+set forwarding-options storm-control-profiles default all
+set routing-options router-id 1.1.1.92
+set protocols ospf area 0.0.0.0 interface xe-0/0/0.0
+set protocols ospf area 0.0.0.0 interface xe-0/0/1.0
+set protocols ospf area 0.0.0.0 interface lo0.0
+set protocols lldp interface all
+set switch-options service-id 10

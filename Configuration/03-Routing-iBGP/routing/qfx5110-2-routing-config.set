@@ -1,0 +1,6 @@
+set routing-options router-id 1.1.1.151
+set routing-options autonomous-system 64500
+set protocols bgp group pe type internal
+set protocols bgp group pe local-address 1.1.1.151
+set protocols bgp group pe family evpn signaling
+set protocols bgp group pe neighbor 1.1.1.150

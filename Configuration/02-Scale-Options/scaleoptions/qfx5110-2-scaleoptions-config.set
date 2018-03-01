@@ -1,0 +1,2 @@
+set forwarding-options vxlan-routing next-hop 16384
+set forwarding-options vxlan-routing interface-num 8192
