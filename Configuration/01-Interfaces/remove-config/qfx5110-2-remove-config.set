@@ -7,3 +7,4 @@ delete policy-options
 delete routing-instances
 delete switch-options
 delete vlans
+delete system login
